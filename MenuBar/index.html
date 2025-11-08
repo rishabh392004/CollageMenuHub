@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Canteen - Login</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap" rel="stylesheet">
+    
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+        }
+
+        #login-section {
+            font-family: Arial, sans-serif;
+            background-color: #ffecb3;
+            background-image: url('https://static.vecteezy.com/system/resources/thumbnails/052/608/559/small_2x/empty-wooden-table-top-with-lights-bokeh-on-blur-restaurant-background-photo.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+        
+        #login-section .login-form {
+            background-color: #fff3e0;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        
+        #login-section .login-form h2 {
+            color: #d2691e;
+            margin-bottom: 20px;
+        }
+
+        #login-section input[type="text"],
+        #login-section input[type="password"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        
+        #login-section input[type="submit"] {
+            background-color: #d2691e;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        #login-section input[type="submit"]:hover {
+            background-color: #b84d1f;
+        }
+        
+        #login-section .footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #333;
+        }
+        
+        #login-section .footer a {
+            text-decoration: none;
+            color: #d2691e;
+            font-weight: bold;
+        }
+        
+        #login-section .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        #login-section .canteen-icon {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+        
+        #menu-section {
+            background-image: url('https://img.freepik.com/premium-photo/assorted-indian-food-dark-wooden-background-dishes-indian-cuisine_1121834-3063.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        #menu-section header {
+            padding: 1px;
+            text-align: center;
+            font-family: 'Unbounded', sans-serif;
+        }
+        
+        #menu-section h3 {
+            text-align: center;
+            padding: 5px;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        #menu-section table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        #menu-section th, #menu-section td {
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid #555;
+            vertical-align: middle;
+        }
+
+        #menu-section th {
+            background-color: rgba(0, 0, 0, 0.5);
+            font-size: 1.1em;
+        }
+
+        #menu-section tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .add-to-cart-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #45a049;
+        }
+        
+        #menu-section .footer {
+            padding: 20px 1px;
+            text-align: center;
+            position: relative;
+            width: 100%;
+            bottom: 0;
+            margin-top: 30px;
+        }
+        
+        .action-button { 
+            background-color: #ff6347;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            position: relative;
+        }
+        
+        .action-button:hover {
+            background-color: #e55347;
+        }
+
+        #cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #d2691e;
+            color: white;
+            border-radius: 50%;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            display: none;
+        }
+
+        #confirmation-section {
+            background-image: url('https://static.vecteezy.com/system/resources/thumbnails/052/608/559/small_2x/empty-wooden-table-top-with-lights-bokeh-on-blur-restaurant-background-photo.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            box-sizing: border-box;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        #confirmation-section .confirmation-box {
+            background-color: #fff3e0;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #confirmation-section h2 {
+            color: #d2691e;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        #confirmation-section p {
+            color: #333;
+            font-size: 1.2em;
+            margin-bottom: 15px; 
+        }
+
+        #cart-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #cart-modal-content {
+            background-color: #fff3e0;
+            color: #333;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            max-height: 80vh;
+        }
+
+        #cart-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #cart-header h2 {
+            margin: 0;
+            color: #d2691e;
+            font-family: 'Unbounded', sans-serif;
+        }
+
+        #close-cart-btn {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        
+        #close-cart-btn:hover {
+            color: #333;
+        }
+
+        #cart-items-list {
+            padding: 20px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-details {
+            flex-grow: 1;
+        }
+        
+        .cart-item-details h4 {
+            margin: 0 0 5px 0;
+            color: #d2691e;
+        }
+        
+        .cart-item-details p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-item-controls button {
+            background-color: #d2691e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            width: 25px;
+            height: 25px;
+            margin: 0 5px;
+        }
+        
+        .cart-item-controls button:hover {
+            background-color: #b84d1f;
+        }
+        
+        .cart-item-controls .remove-item-btn {
+            background-color: #ff6347;
+            margin-left: 10px;
+        }
+
+        .cart-item-controls .remove-item-btn:hover {
+            background-color: #e55347;
+        }
+        
+        .cart-item-controls span {
+            width: 25px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #cart-footer {
+            padding: 20px;
+            border-top: 1px solid #ddd;
+            text-align: right;
+        }
+        
+        #cart-footer h3 {
+            margin: 0 0 15px 0;
+            color: #333;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <section id="login-section">
+        <img src="https://img.icons8.com/ios/452/fast-food.png" alt="Canteen Icon" class="canteen-icon">
+        <div class="login-form">
+            <h2>Login to Canteen</h2>
+            <form id="login-form" action="#" method="get"> 
+                <input type="text" name="username" placeholder="Enter your username" required><br>
+                <input type="password" name="password" placeholder="Enter your password" required><br>
+                <input type="submit" value="Login">
+            </form>
+            <div class="footer">
+                <p>Don't have an account? <a href="#">Sign Up</a></p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="menu-section" style="display: none;">
+        <header>
+            <h1>Menu For Today</h1>
+        </header>
+        
+        <h3>North Indian Cuisine</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Dish</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Add</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Butter Chicken</td>
+                    <td>Rich and creamy chicken curry</td>
+                    <td>$12.99</td>
+                    <td><button class="add-to-cart-btn" data-name="Butter Chicken" data-price="12.99">Add to Cart</button></td>
+                </tr>
+                <tr>
+                    <td>Paneer Tikka</td>
+                    <td>Grilled cottage cheese</td>
+                    <td>$9.99</td>
+                    <td><button class="add-to-cart-btn" data-name="Paneer Tikka" data-price="9.99">Add to Cart</button></td>
+                </tr>
+                <tr>
+                    <td>Biriyani</td>
+                    <td>Aromatic rice with meat</td>
+                    <td>$14.99</td>
+                    <td><button class="add-to-cart-btn" data-name="Biriyani" data-price="14.99">Add to Cart</button></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Chinese Cuisine</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Dish</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Add</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Sweet & Sour Chicken</td>
+                    <td>Fried chicken in tangy sauce</td>
+                    <td>$10.99</td>
+                    <td><button class="add-to-cart-btn" data-name="Sweet & Sour Chicken" data-price="10.99">Add to Cart</button></td>
+                </tr>
+                <tr>
+                    <td>Chow Mein</td>
+                    <td>Stir-fried noodles</td>
+                    <td>$7.99</td>
+                    <td><button class="add-to-cart-btn" data-name="Chow Mein" data-price="7.99">Add to Cart</button></td>
+                </tr>
+                <tr>
+                    <td>Spring Rolls</td>
+                    <td>Crispy rolls with vegetables</td>
+                    <td>$5.99</td>
+                    <td><button class="add-to-cart-btn" data-name="Spring Rolls" data-price="5.99">Add to Cart</button></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>South Indian Cuisine</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Dish</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Add</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Masala Dosa</td>
+                    <td>Crispy pancake with potatoes</td>
+                    <td>$8.99</td>
+                    <td><button class="add-to-cart-btn" data-name="Masala Dosa" data-price="8.99">Add to Cart</button></td>
+                </tr>
+                <tr>
+                    <td>Idli</td>
+                    <td>Steamed rice cakes</td>
+                    <td>$5.99</td>
+                    <td><button class="add-to-cart-btn" data-name="Idli" data-price="5.99">Add to Cart</button></td>
+                </tr>
+                <tr>
+                    <td>Hyderabadi Biryani</td>
+                    <td>Flavored rice with meat</td>
+                    <td>$13.99</td>
+                    <td><button class="add-to-cart-btn" data-name="Hyderabadi Biryani" data-price="13.99">Add to Cart</button></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="footer">
+            <button id="view-cart-btn" class="action-button">
+                View Cart
+                <span id="cart-count">0</span>
+            </button>
+            <p>&copy; 2025 Café Cosmos. All rights reserved.</p>
+        </div>
+    </section>
+
+    <section id="confirmation-section" style="display: none;">
+        <div class="confirmation-box">
+            <h2>Thank you for your order!</h2>
+            <p>Your total is: <span id="order-total">$0.00</span></p>
+            <p>Estimated preparation time: <span id="prep-time">0 minutes</span></p>
+            <button id="new-order-btn" class="action-button">Place Another Order</button>
+        </div>
+    </section>
+
+    <div id="cart-modal">
+        <div id="cart-modal-content">
+            <div id="cart-header">
+                <h2>Your Cart</h2>
+                <button id="close-cart-btn">&times;</button>
+            </div>
+            <div id="cart-items-list">
+            </div>
+            <div id="cart-footer">
+                <h3>Total: <span id="cart-total">$0.00</span></h3>
+                <button id="checkout-btn" class="action-button">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+    
+</body>
+</html>
